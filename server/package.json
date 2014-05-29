@@ -4,12 +4,23 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "~3.0",
+    "express": "~4.0",
+    "body-parser": "*",
+    "serve-favicon": "*",
+    "compression": "*",
+    "cookie-parser": "*",
+    "errorhandler": "*",
+    "morgan": "*",
+    "express-session": "*",
     "passport": "~0.1.12",
     "passport-local": "~0.1.6",
-    "express-namespace": "~0.1.1",
     "open": "0.0.3",
-    "request": "~2.16.6"
+    "bcrypt": "*",
+    "mongoose": "*",
+    "mongoose-q": "~0.0.9",
+    "connect-mongo": "*",
+    "q":  "*",
+    "nodemailer": "~0.6.3"
   },
   "devDependencies": {
     "rewire": "~1.0.3",
@@ -17,5 +28,6 @@
     "grunt": "~0.4",
     "grunt-contrib-jshint": "~0.2.0",
     "grunt-contrib-nodeunit": "~0.1.2"
-  }
+  },
+  "main": "server.js"
 }

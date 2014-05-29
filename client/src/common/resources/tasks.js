@@ -1,12 +1,12 @@
-angular.module('resources.tasks', ['mongolabResource']);
-angular.module('resources.tasks').factory('Tasks', ['mongolabResource', function (mongolabResource) {
+angular.module('resources.tasks', ['mongoResource']);
+angular.module('resources.tasks').factory('Tasks', ['mongoResource', function (mongoResource) {
 
-  var Tasks = mongolabResource('tasks');
+  var Tasks = mongoResource('tasks');
 
   Tasks.statesEnum = ['TODO', 'IN_DEV', 'BLOCKED', 'IN_TEST', 'DONE'];
 
-  Tasks.forProductBacklogItem = function (productBacklogItem) {
-    return Tasks.query({productBacklogItem:productBacklogItem});
+  Tasks.forProductBacklogItem = function (productBacklogItemId) {
+    return Tasks.query({productBacklogItemId:productBacklogItemId});
   };
 
   Tasks.forSprint = function (sprintId) {

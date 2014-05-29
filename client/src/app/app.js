@@ -12,9 +12,8 @@ angular.module('app', [
   'templates.app',
   'templates.common']);
 
-angular.module('app').constant('MONGOLAB_CONFIG', {
-  baseUrl: '/databases/',
-  dbName: 'ascrum'
+angular.module('app').constant('MONGO_CONFIG', {
+  collectionUrl: '/api/query/',
 });
 
 //TODO: move those messages to a separate module

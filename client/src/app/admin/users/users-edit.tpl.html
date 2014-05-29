@@ -14,11 +14,11 @@
         <input class="span6" type="text" id="firstName" name="firstName" ng-model="user.firstName" required>
         <span ng-show="showError('firstName', 'required')" class="help-inline">This field is required.</span>
         <label for="password">Password</label>
-        <input class="span6" type="password" id="password" name="password" ng-model="user.password" required>
+        <input class="span6" type="password" id="password" name="password" ng-model="user.auth.password" required>
         <span ng-show="showError('password', 'required')" class="help-inline">This field is required.</span>
         <span ng-show="showError('passwordRepeat', 'equal')" class="help-inline">Passwords do not match.</span>
         <label for="passwordRepeat">Password (repeat)</label>
-        <input class="span6" type="password" id="passwordRepeat" name="passwordRepeat" ng-model="password" required validate-equals="user.password">
+        <input class="span6" type="password" id="passwordRepeat" name="passwordRepeat" ng-model="password" required validate-equals="user.auth.password">
         <span ng-show="showError('passwordRepeat', 'required')" class="help-inline">This field is required.</span>
         <span ng-show="showError('passwordRepeat', 'equal')" class="help-inline">Passwords do not match.</span>
         <label>Admin</label>

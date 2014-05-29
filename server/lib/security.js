@@ -4,10 +4,10 @@ var MongoStrategy = require('./mongo-strategy');
 var app = express();
 
 var filterUser = function(user) {
-  if ( user ) {
+  if (user) {
     return {
       user : {
-        id: user._id.$oid,
+        _id: user._id,
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
@@ -20,8 +20,8 @@ var filterUser = function(user) {
 };
 
 var security = {
-  initialize: function(url, apiKey, dbName, authCollection) {
-    passport.use(new MongoStrategy(url, apiKey, dbName, authCollection));
+  initialize: function() {
+    passport.use(new MongoStrategy());
   },
   authenticationRequired: function(req, res, next) {
     console.log('authRequired');
@@ -41,14 +41,14 @@ var security = {
   },
   sendCurrentUser: function(req, res, next) {
     res.json(200, filterUser(req.user));
-    res.end();
   },
   login: function(req, res, next) {
-    function authenticationFailed(err, user, info){
+    function authenticationFailed(err, user, info) {
       if (err) { return next(err); }
       if (!user) { return res.json(filterUser(user)); }
       req.logIn(user, function(err) {
         if ( err ) { return next(err); }
+        console.log('auth failed', user);
         return res.json(filterUser(user));
       });
     }

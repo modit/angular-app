@@ -1,7 +1,7 @@
-angular.module('resources.sprints', ['mongolabResource']);
-angular.module('resources.sprints').factory('Sprints', ['mongolabResource', function (mongolabResource) {
+angular.module('resources.sprints', ['mongoResource']);
+angular.module('resources.sprints').factory('Sprints', ['mongoResource', function (mongoResource) {
 
-  var Sprints = mongolabResource('sprints');
+  var Sprints = mongoResource('sprints');
   Sprints.forProject = function (projectId) {
     return Sprints.query({projectId:projectId});
   };

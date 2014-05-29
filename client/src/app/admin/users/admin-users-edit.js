@@ -7,8 +7,10 @@ angular.module('admin-users-edit',[
 
 .controller('UsersEditCtrl', ['$scope', '$location', 'i18nNotifications', 'user', function ($scope, $location, i18nNotifications, user) {
 
+  user.auth = user.auth || {};
+
   $scope.user = user;
-  $scope.password = user.password;
+  $scope.password = user.auth.password;
 
   $scope.onSave = function (user) {
     i18nNotifications.pushForNextRoute('crud.user.save.success', 'success', {id : user.$id()});

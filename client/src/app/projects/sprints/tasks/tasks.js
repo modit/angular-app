@@ -58,9 +58,12 @@ angular.module('tasks', ['resources.tasks', 'services.crud'])
   $scope.statesEnum = Tasks.statesEnum;
   $scope.sprintBacklogItems = sprintBacklogItems;
   $scope.teamMembers = teamMembers;
+  
+  var projectId = $route.current.params.projectId;
+  var sprintId = $route.current.params.sprintId;
 
   $scope.onSave = function () {
-    $location.path('/admin/users');
+    $location.path('/projects/'+projectId+'/sprints/'+sprintId+'/tasks');
   };
   $scope.onError = function() {
     $scope.updateError = true;

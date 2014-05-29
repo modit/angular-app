@@ -1,12 +1,9 @@
-angular.module('mongolabResource', []).factory('mongolabResource', ['MONGOLAB_CONFIG','$http', '$q', function (MONGOLAB_CONFIG, $http, $q) {
+angular.module('mongoResource', []).factory('mongoResource', ['MONGO_CONFIG','$http', '$q', function (MONGO_CONFIG, $http, $q) {
 
-  function MongolabResourceFactory(collectionName) {
+  function MongoResourceFactory(collectionName) {
 
-    var url = MONGOLAB_CONFIG.baseUrl + MONGOLAB_CONFIG.dbName + '/collections/' + collectionName;
+    var url = MONGO_CONFIG.collectionUrl + collectionName;
     var defaultParams = {};
-    if (MONGOLAB_CONFIG.apiKey) {
-      defaultParams.apiKey = MONGOLAB_CONFIG.apiKey;
-    }
     
     var thenFactoryMethod = function (httpPromise, successcb, errorcb, isArray) {
       var scb = successcb || angular.noop;
@@ -20,13 +17,13 @@ angular.module('mongolabResource', []).factory('mongolabResource', ['MONGOLAB_CO
             result.push(new Resource(response.data[i]));
           }
         } else {
-          //MongoLab has rather peculiar way of reporting not-found items, I would expect 404 HTTP response status...
           if (response.data === " null "){
             return $q.reject({
               code:'resource.notfound',
               collection:collectionName
             });
           } else {
+            console.log('response', response);
             result = new Resource(response.data);
           }
         }
@@ -58,19 +55,13 @@ angular.module('mongolabResource', []).factory('mongolabResource', ['MONGOLAB_CO
     };
 
     Resource.getByIds = function (ids, successcb, errorcb) {
-      var qin = [];
-      angular.forEach(ids, function (id) {
-         qin.push({$oid: id});
-      });
-      return Resource.query({_id:{$in:qin}}, successcb, errorcb);
+      return Resource.query({_id:{$in:ids}}, successcb, errorcb);
     };
 
     //instance methods
 
     Resource.prototype.$id = function () {
-      if (this._id && this._id.$oid) {
-        return this._id.$oid;
-      }
+      return this._id;
     };
 
     Resource.prototype.$save = function (successcb, errorcb) {
@@ -98,5 +89,5 @@ angular.module('mongolabResource', []).factory('mongolabResource', ['MONGOLAB_CO
 
     return Resource;
   }
-  return MongolabResourceFactory;
+  return MongoResourceFactory;
 }]);
