@@ -2,8 +2,8 @@ path = require('path');
 
 module.exports = {
   mongo: {
-    host: process.env.MONGO_PORT_27017_TCP_ADDR || 'localhost', // The name of the domain on which MongoDB is hosted - autoset by Docker
-    port: process.env.MONGO_PORT_27017_TCP_PORT || 27017,       // The port on which MongoDB is hosted - autoset by Docker
+    host: process.env.MONGO_HOST || 'localhost',              // The name of the domain on which MongoDB is hosted
+    port: process.env.MONGO_PORT || 27017,                    // The port on which MongoDB is hosted
     db:   process.env.MONGO_DATABASE || 'ascrum'                // The name of the database that contains the app data
   },
   security: {

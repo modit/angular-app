@@ -5,8 +5,11 @@ web:
     - mongo
   expose:
     - 80
+  ports:
+    - "80:80"
   environment:
     WEB_PORT: 80
+    MONGO_HOST: mongo_1
     LOGIN: false
   
 mongo:
