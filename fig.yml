@@ -9,8 +9,9 @@ web:
     - "80:80"
   environment:
     WEB_PORT: 80
-    MONGO_HOST: mongo_1
+    MONGO_HOST: mongo
     LOGIN: false
   
 mongo:
   image: dockerfile/mongodb
+  hostname: mongo
